@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import AnimePill from "../../components/AnimePill/AnimePill";
-import Pagination from "../../components/Pagination/Pagination";
-import Quote from "../../components/Quote/Quote";
-import { slicedAnimeTitles, animeTitles } from "../../store";
+import Pagination from "../components/Pagination/Pagination";
+import Quote from "../components/Quote/Quote";
+import { slicedAnimeTitles, animeTitles } from "../store";
 
 const Homepage = () => {
   const animes = useRecoilValue(animeTitles);
@@ -15,9 +15,6 @@ const Homepage = () => {
     const randNum = Math.floor(Math.random() * 5);
     return colors[randNum];
   };
-
-
-  console.log('a)'
 
   return (
     <StyledHomePage>

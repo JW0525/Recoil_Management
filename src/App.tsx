@@ -1,11 +1,37 @@
-import styled from "styled-components";
+import { useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import axios from "axios";
+import { animeTitles } from "./store";
+import Homepage from "./pages/home";
+import Animepage from "./pages/anime";
 
-function App() {
+const App = () => {
+  const setTitles = useSetRecoilState(animeTitles);
+
+  const fetchAnimes = async () => {
+    try {
+      const res = await axios.get(
+        "https://animechan.vercel.app/api/available/anime"
+      );
+      setTitles(res?.data);
+    } catch (error: any) {
+      console.log(error?.response?.data?.error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAnimes();
+  }, []);
+
   return (
-    <div>
-
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route  path="/" element={Homepage} />
+        <Route  path="/anime/:name" element={Animepage} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

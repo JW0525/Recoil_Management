@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import SmallQuote from "../../components/SmallQuote/SmallQuote";
+import SmallQuote from "../components/SmallQuote/SmallQuote";
 
 const Animepage = () => {
   const param = useParams();
@@ -36,7 +36,7 @@ const Animepage = () => {
         {loading ? (
           <p>Loading...</p>
         ) : quotes?.length ? (
-          quotes?.map((quote, index) => (
+          quotes?.map((quote:any, index) => (
             <div key={quote?.quote + index} className="anime">
               <SmallQuote
                 anime={quote?.anime}
